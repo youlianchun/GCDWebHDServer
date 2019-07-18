@@ -1,24 +1,30 @@
 {
   "name": "GCDWebHDServer",
-  "version": "0.1.0",
-  "summary": "A short description of GCDWebHDServer.",
+  "version": "0.1.2",
+  "summary": "WebDAVServer and WebUploaderServer merge",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/YLCHUN/GCDWebHDServer",
+  "homepage": "https://github.com/youlianchun/GCDWebHDServer",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "YLCHUN": "lianchun.you@ximalaya.com"
+    "YLCHUN": "youlianchunios@163.com"
   },
   "source": {
-    "git": "https://github.com/YLCHUN/GCDWebHDServer.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/youlianchun/GCDWebHDServer.git",
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "GCDWebHDServer/Classes/**/*",
+  "resources": "GCDWebHDServer/Assets/GCDWebHDServerSide.bundle",
+  "preserve_paths": [
+    "GCDWebHDServer/Classes/**/*",
+    "GCDWebHDServer/Assets/**/*",
+    "GCDWebHDServer/Products/GCDWebHDServer.framework"
+  ],
   "libraries": "xml2",
   "xcconfig": {
     "HEADER_SEARCH_PATHS": "$(SDKROOT)/usr/include/libxml2"

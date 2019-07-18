@@ -1,5 +1,5 @@
 PODS:
-  - GCDWebHDServer (0.1.0):
+  - GCDWebHDServer (0.1.2):
     - GCDWebServer (= 3.5.2)
   - GCDWebServer (3.5.2):
     - GCDWebServer/Core (= 3.5.2)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GCDWebHDServer: f1287809f329cbde0dd2a6e26a99c3384071ed13
+  GCDWebHDServer: 18729f728441aa0faae4dda364237648ad6a2f63
   GCDWebServer: ead88cd14596dd4eae4f5830b8877c87c8728990
   SingleObject: 56d89081458f996dae2e285e396e0a285359f32f
 

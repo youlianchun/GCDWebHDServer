@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GCDWebHDServer'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'WebDAVServer and WebUploaderServer merge'
 
 # This description is used to generate tags and improve search results.
@@ -32,6 +32,7 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'GCDWebHDServer/Classes/**/*'
   s.resource = 'GCDWebHDServer/Assets/GCDWebHDServerSide.bundle'
+  s.preserve_paths = 'GCDWebHDServer/Classes/**/*','GCDWebHDServer/Assets/**/*', 'GCDWebHDServer/Products/GCDWebHDServer.framework'
 
   s.library = 'xml2'
   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
