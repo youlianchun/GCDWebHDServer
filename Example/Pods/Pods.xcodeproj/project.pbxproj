@@ -312,7 +312,7 @@
 		79122AB9AAE21549BF1F3DAEA1D4966B /* GCDWebHDServer */ = {
 			isa = PBXGroup;
 			children = (
-				A9239C4C22E015A9000CC977 /* Resources */,
+				A9239C4A22E0159F000CC977 /* GCDWebHDServerSide.bundle */,
 				4923CB43716A6C623C97D4AB4E083A80 /* GCDWebHDServer.h */,
 				CDE464CEA60014D299F1CB33717CC4BD /* GCDWebHDServer.m */,
 				DEA179155EBAFB4F55B65AFC057680E7 /* Pod */,
@@ -367,14 +367,6 @@
 				79122AB9AAE21549BF1F3DAEA1D4966B /* GCDWebHDServer */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		A9239C4C22E015A9000CC977 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A9239C4A22E0159F000CC977 /* GCDWebHDServerSide.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		B27FD44D2843BDCA6E426349D88738C6 /* Products */ = {
