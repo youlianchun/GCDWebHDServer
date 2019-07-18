@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'GCDWebHDServer'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of GCDWebHDServer.'
+  s.summary          = 'GCDWebHDServer = WebDAVServer + WebUploaderServer'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/YLCHUN/GCDWebHDServer'
+  s.homepage         = 'https://github.com/youlianchun/GCDWebHDServer'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'YLCHUN' => 'lianchun.you@ximalaya.com' }
-  s.source           = { :git => 'https://github.com/YLCHUN/GCDWebHDServer.git', :tag => s.version.to_s }
+  s.author           = { 'YLCHUN' => 'youlianchunios@163.com' }
+  s.source           = { :git => 'https://github.com/youlianchun/GCDWebHDServer.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
