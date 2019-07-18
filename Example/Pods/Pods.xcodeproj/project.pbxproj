@@ -41,7 +41,7 @@
 		95224A0EB0B5C855A5D451BF9E50FC4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB62FE772CA0208DD2C140C7427AAC5 /* Foundation.framework */; };
 		9914B400A66BC647645295D64D56D805 /* GCDWebServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DB9EFF504B059D33AE94EEB71711791 /* GCDWebServerRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A827BE91ADD63491CABF172AC6CF90F8 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D55B6B7246EC2036BE3324C0C6C67F28 /* GCDWebServerConnection.m */; };
-		A9239C4B22E0159F000CC977 /* GCDWebHDServerSide.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9239C4A22E0159F000CC977 /* GCDWebHDServerSide.bundle */; };
+		A9239C4E22E02359000CC977 /* GCDWebHDServerSide.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9239C4D22E02359000CC977 /* GCDWebHDServerSide.bundle */; };
 		AE76ECFE56F5DB3EBD5E7DDBB6340BE6 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB11D5B4F15E9F3B075E8E52849975 /* GCDWebServerResponse.m */; };
 		B645E4CDE5F9D1E5702E66C9874D259F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB62FE772CA0208DD2C140C7427AAC5 /* Foundation.framework */; };
 		B86275904F97047CE68800D5089A7597 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB62FE772CA0208DD2C140C7427AAC5 /* Foundation.framework */; };
@@ -147,7 +147,7 @@
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A16A72EEFA241674BF51D8C49892A3C1 /* Pods-GCDWebHDServer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GCDWebHDServer_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A502546D6D9A4FE23308A21B9DC5F639 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDWebServerURLEncodedFormRequest.h; path = GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
-		A9239C4A22E0159F000CC977 /* GCDWebHDServerSide.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GCDWebHDServerSide.bundle; sourceTree = "<group>"; };
+		A9239C4D22E02359000CC977 /* GCDWebHDServerSide.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GCDWebHDServerSide.bundle; path = GCDWebHDServer/Assets/GCDWebHDServerSide.bundle; sourceTree = "<group>"; };
 		AAB1818857C83B4B6D571F97DB76C0FE /* Pods-GCDWebHDServer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GCDWebHDServer_Tests-dummy.m"; sourceTree = "<group>"; };
 		BA2BCF2FCB0F1269D34CFE6990BFDFA7 /* GCDWebHDServer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GCDWebHDServer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BCCFE1F774FB68BD86A34CDA5262DBA7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -312,7 +312,7 @@
 		79122AB9AAE21549BF1F3DAEA1D4966B /* GCDWebHDServer */ = {
 			isa = PBXGroup;
 			children = (
-				A9239C4A22E0159F000CC977 /* GCDWebHDServerSide.bundle */,
+				A9239C4D22E02359000CC977 /* GCDWebHDServerSide.bundle */,
 				4923CB43716A6C623C97D4AB4E083A80 /* GCDWebHDServer.h */,
 				CDE464CEA60014D299F1CB33717CC4BD /* GCDWebHDServer.m */,
 				DEA179155EBAFB4F55B65AFC057680E7 /* Pod */,
@@ -664,7 +664,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9239C4B22E0159F000CC977 /* GCDWebHDServerSide.bundle in Resources */,
+				A9239C4E22E02359000CC977 /* GCDWebHDServerSide.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
