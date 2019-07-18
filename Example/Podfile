@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'GCDWebHDServer_Example' do
+  pod 'SingleObject'
+  pod 'GCDWebHDServer', :path => '../'
+
+  target 'GCDWebHDServer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
