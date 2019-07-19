@@ -9,6 +9,9 @@
 #import "RemoteHDServer.h"
 #import "GCDWebHDServer.h"
 
+@interface RemoteHDServer()<GCDWebHDServerDelegate>
+
+@end
 @implementation RemoteHDServer
 {
     GCDWebHDServer * _hdServer;
@@ -18,8 +21,13 @@
     if (self = [super init]) {
         _hdServer = [[GCDWebHDServer alloc] initWithDirectory:NSHomeDirectory()];
         [GCDWebHDServer setLogLevel:5];
+        _hdServer.delegate = self;
     }
     return self;
+}
+
+- (void)webServerDidConnect:(GCDWebServer *)server {
+        NSLog(@"");
 }
 
 - (void)start {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GCDWebHDServer'
-  s.version          = '0.1.3'
+  s.version          = '0.2.0'
   s.summary          = 'WebDAVServer and WebUploaderServer merge'
 
 # This description is used to generate tags and improve search results.

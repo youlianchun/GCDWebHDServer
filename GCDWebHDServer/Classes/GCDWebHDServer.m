@@ -962,9 +962,17 @@ static inline xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name
         return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Moving to item name \"%@\" is not allowed", itemName];
     }
     
-    if (![self shouldMoveItemFromPath:oldAbsolutePath toPath:newAbsolutePath]) {
-        return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Moving \"%@\" to \"%@\" is not permitted", oldRelativePath, newRelativePath];
+    if (isMove) {
+        if (![self shouldMoveItemFromPath:oldAbsolutePath toPath:newAbsolutePath]) {
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Moving \"%@\" to \"%@\" is not permitted", oldRelativePath, newRelativePath];
+        }
+    } else {
+        if (![self shouldCopyItemFromPath:oldAbsolutePath toPath:newAbsolutePath]) {
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Copying \"%@\" to \"%@\" is not permitted", oldRelativePath, newRelativePath];
+        }
     }
+    
+    
     
     NSError* error = nil;
     if (isMove) {
