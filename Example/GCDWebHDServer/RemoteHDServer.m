@@ -8,6 +8,8 @@
 
 #import "RemoteHDServer.h"
 #import "GCDWebHDServer.h"
+#import <sys/param.h>
+#import <sys/mount.h>
 
 @interface RemoteHDServer()<GCDWebHDServerDelegate>
 
@@ -44,6 +46,16 @@
 
 - (NSURL *)url {
     return _hdServer.serverURL;
+}
+
+
++ (unsigned long long)space {
+    struct statfs buf;
+    unsigned long long space = -1;
+    if (statfs("/var", &buf) >= 0) {
+        space = (unsigned long long)(buf.f_bsize * buf.f_bavail);
+    }
+    return space;
 }
 
 + (instancetype)share {

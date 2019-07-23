@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RemoteHDServer : SingleObject
 @property (nonatomic, readonly) NSURL *url;
+@property (class, nonatomic, readonly) unsigned long long space;
 - (void)start;
 - (void)startWithPort:(NSUInteger)port;
 - (void)stop;

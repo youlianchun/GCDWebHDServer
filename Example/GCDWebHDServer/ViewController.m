@@ -10,6 +10,8 @@
 #import "RemoteHDServer.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *spaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *urlLabel;
 
 @end
 
@@ -17,9 +19,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[RemoteHDServer share] start];
-    NSLog(@"RemoteHDServer url: %@", [RemoteHDServer share].url.absoluteString);
+    self.spaceLabel.text = [NSString stringWithFormat:@"%0.2lf MB",RemoteHDServer.space/1024.0/1024.0];
+    
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)switchAction:(UISwitch *)sender {
+    if (sender.on) {
+        [[RemoteHDServer share] start];
+        self.urlLabel.text = [RemoteHDServer share].url.absoluteString;
+    }else {
+        [[RemoteHDServer share] stop];
+        self.urlLabel.text = @"";
+    }
 }
 
 
