@@ -71,6 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+extern NSString* const GCDWebHDServerOption_HDDirectory;
+
 /**
  *  The GCDWebHDServer subclass of GCDWebServer implements a class 1 compliant
  *  WebDAV server. It is also partially class 2 compliant but only when the
@@ -157,12 +159,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* footer;
 
 /**
- *  This method is the designated initializer for the class.
+ *  used default siteBundle.
  */
-- (instancetype)initWithDirectory:(NSString*)path;
+- (instancetype)init;
+
+/**
+ *  This method is the designated initializer for the class, and used custom siteBundle, disable web when siteBundle is nil.
+ */
+- (instancetype)initWithSiteBundle:(NSBundle *)siteBundle;
+
+- (BOOL)startWithDirectory:(NSString *)directory options:(NSDictionary<NSString *,id> *)options error:(NSError * _Nullable __autoreleasing *)error;
 
 @end
 
+@interface GCDWebHDServer (SideBundle)
+
+@property (class, readonly) NSBundle *defaultSideBundle;
+
+@end
 /**
  *  Hooks to customize the behavior of GCDWebHDServer.
  *

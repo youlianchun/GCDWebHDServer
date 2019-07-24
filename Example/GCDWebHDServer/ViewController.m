@@ -21,12 +21,16 @@
     [super viewDidLoad];
     self.spaceLabel.text = [NSString stringWithFormat:@"%0.2lf MB",RemoteHDServer.space/1024.0/1024.0];
     
+    
     // Do any additional setup after loading the view.
 }
 
 - (IBAction)switchAction:(UISwitch *)sender {
     if (sender.on) {
-        [[RemoteHDServer share] start];
+        [[RemoteHDServer share] startWithOption:^(HDConfig * _Nonnull conf, HDAuthAccount * _Nonnull auth) {
+            conf.port = 8888;
+            auth[@"YLCHUN"] = @"111111";
+        }];
         self.urlLabel.text = [RemoteHDServer share].url.absoluteString;
     }else {
         [[RemoteHDServer share] stop];

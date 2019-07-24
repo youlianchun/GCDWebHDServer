@@ -1,6 +1,6 @@
 {
   "name": "GCDWebHDServer",
-  "version": "0.1.2",
+  "version": "0.3.1",
   "summary": "WebDAVServer and WebUploaderServer merge",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/youlianchun/GCDWebHDServer",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/youlianchun/GCDWebHDServer.git",
-    "tag": "0.1.2"
+    "tag": "0.3.1"
   },
   "platforms": {
     "ios": "8.0"

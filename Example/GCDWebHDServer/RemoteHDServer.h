@@ -10,11 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface HDAuthAccount : NSObject
+- (void)setObject:(nullable NSString *)obj forKeyedSubscript:(NSString *)key;
+- (nullable NSString *)objectForKeyedSubscript:(NSString *)key;
+- (void)setPassword:(nullable NSString *)password name:(NSString *)name;
+- (nullable NSString *)passwordForName:(NSString *)name;
+@end
+
+@interface HDConfig : NSObject
+@property (nonatomic, assign) NSUInteger port;
+@property (nonatomic, copy) NSString *bonjourName;
+@property (nonatomic, copy) NSString *directory;
+@end
+
 @interface RemoteHDServer : SingleObject
+@property (nonatomic, readonly) BOOL runing;
 @property (nonatomic, readonly) NSURL *url;
 @property (class, nonatomic, readonly) unsigned long long space;
-- (void)start;
-- (void)startWithPort:(NSUInteger)port;
+
+- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))option;
 - (void)stop;
 
 + (instancetype)share;

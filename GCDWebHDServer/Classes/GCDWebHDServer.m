@@ -64,6 +64,8 @@ typedef NS_ENUM(NSInteger, DAVProperties) {
     kDAVAllProperties = kDAVProperty_ResourceType | kDAVProperty_CreationDate | kDAVProperty_LastModified | kDAVProperty_ContentLength
 };
 
+NSString* const GCDWebHDServerOption_HDDirectory = @"WebHDDirectory";
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GCDWebHDServer (DAVMethods)
@@ -80,20 +82,35 @@ NS_ASSUME_NONNULL_END
 
 @dynamic delegate;
 
-- (instancetype)initWithDirectory:(NSString*)path {
-    if ((self = [super init])) {
-        _directory = [path copy];
+- (instancetype)init {
+    return [self initWithSiteBundle:GCDWebHDServer.defaultSideBundle];
+}
+
+- (instancetype)initWithSiteBundle:(NSBundle *)siteBundle {
+    if (self = [super init]) {
+        _directory = NSHomeDirectory();
         [self davInit];
-        
-        NSString* bundlePath = [[NSBundle bundleForClass:[GCDWebHDServer class]] pathForResource:@"GCDWebHDServerSide" ofType:@"bundle"];
-        if (bundlePath) {
-            NSBundle* siteBundle = [NSBundle bundleWithPath:bundlePath];
-            if (siteBundle) {
-                [self uploaderInitSiteBundle:siteBundle];
-            }
-        }
+        [self uploaderInitSiteBundle:siteBundle];
     }
     return self;
+}
+
+- (BOOL)startWithDirectory:(NSString *)directory options:(NSDictionary<NSString *,id> *)options error:(NSError * _Nullable __autoreleasing *)error {
+    if (directory.length == 0) return NO;
+    _directory = directory;
+    return [super startWithOptions:options error:error];
+}
+
+- (BOOL)startWithOptions:(NSDictionary<NSString*, id>*)options error:(NSError**)error {
+    return [self startWithDirectory:options[GCDWebHDServerOption_HDDirectory] options:options error:error];
+}
+
+@end
+
+@implementation GCDWebHDServer (SideBundle)
++ (NSBundle *)defaultSideBundle {
+    NSString* bundlePath = [[NSBundle bundleForClass:[GCDWebHDServer class]] pathForResource:@"GCDWebHDServerSide" ofType:@"bundle"];
+    return [NSBundle bundleWithPath:bundlePath];
 }
 
 @end
@@ -709,6 +726,8 @@ static inline xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name
 @implementation GCDWebHDServer (UploaderMethods)
 
 - (void)uploaderInitSiteBundle:(NSBundle *)siteBundle {
+    if (!siteBundle) return;
+    
     GCDWebHDServer* __unsafe_unretained server = self;
     
     // Resource files

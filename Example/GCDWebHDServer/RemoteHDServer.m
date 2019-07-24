@@ -11,6 +11,52 @@
 #import <sys/param.h>
 #import <sys/mount.h>
 
+@implementation HDAuthAccount
+{
+    NSMutableDictionary *_authAccounts;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _authAccounts = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (void)setPassword:(NSString *)password name:(NSString *)name {
+    _authAccounts[name] = password;
+}
+
+- (NSString *)passwordForName:(NSString *)name {
+    return _authAccounts[name];
+}
+
+- (void)setObject:(nullable NSString *)obj forKeyedSubscript:(NSString *)key {
+    [self setPassword:obj name:key];
+}
+
+- (nullable NSString *)objectForKeyedSubscript:(NSString *)key {
+    return [self passwordForName:key];
+}
+
+- (NSUInteger)count {
+    return _authAccounts.count;
+}
+
+- (NSDictionary *)accounts {
+    return [_authAccounts copy];
+}
+
+@end
+
+#pragma mark -
+
+@implementation HDConfig
+@end
+
+#pragma mark -
+
 @interface RemoteHDServer()<GCDWebHDServerDelegate>
 
 @end
@@ -18,10 +64,12 @@
 {
     GCDWebHDServer * _hdServer;
 }
+@synthesize runing = _runing;
 
 - (instancetype)init {
     if (self = [super init]) {
-        _hdServer = [[GCDWebHDServer alloc] initWithDirectory:NSHomeDirectory()];
+        _hdServer = [[GCDWebHDServer alloc] init];
+        _hdServer.allowHiddenItems = YES;
         [GCDWebHDServer setLogLevel:5];
         _hdServer.delegate = self;
     }
@@ -29,18 +77,32 @@
 }
 
 - (void)webServerDidConnect:(GCDWebServer *)server {
-        NSLog(@"");
+    
 }
 
-- (void)start {
-    [self startWithPort:8888];
-}
-
-- (void)startWithPort:(NSUInteger)port {
-    [_hdServer startWithPort:port bonjourName:@"RemoteHDServer"];
+- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))option {
+    HDConfig *conf = [HDConfig new];
+    conf.port = 8888;
+    conf.bonjourName = NSStringFromClass(self.class);
+    conf.directory = NSHomeDirectory();
+    HDAuthAccount *authAccount = [HDAuthAccount new];
+    if (option) {
+        option(conf, authAccount);
+    }
+    
+    NSMutableDictionary* options = [NSMutableDictionary dictionary];
+    options[GCDWebServerOption_Port] = @(conf.port);
+    options[GCDWebServerOption_BonjourName] = conf.bonjourName;
+    options[GCDWebHDServerOption_HDDirectory] = conf.directory;
+    if (authAccount.count > 0) {
+        options[GCDWebServerOption_AuthenticationAccounts] = [authAccount accounts];
+        options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess;
+    }
+    _runing = [_hdServer startWithOptions:options error:NULL];
 }
 
 - (void)stop {
+    if (!_runing) return;
     [_hdServer stop];
 }
 
