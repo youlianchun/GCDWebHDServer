@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface RemoteHDServer : SingleObject
-@property (nonatomic, readonly) BOOL runing;
+@property (nonatomic, readonly) BOOL running;
 @property (nonatomic, readonly) NSURL *url;
 @property (class, nonatomic, readonly) unsigned long long space;
 

@@ -73,7 +73,7 @@
 
 
 - (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))conf {
-    if (self.runing) return;
+    if (self.running) return;
     [_hdServer startWithOptions:[self optionsWithConf:conf] error:NULL];
 }
 
@@ -96,11 +96,11 @@
 }
 
 - (void)stop {
-    if (!self.runing) return;
+    if (!self.running) return;
     [_hdServer stop];
 }
 
-- (BOOL)runing {
+- (BOOL)running {
     return _hdServer.running;
 }
 
