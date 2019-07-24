@@ -164,7 +164,7 @@ extern NSString* const GCDWebHDServerOption_HDDirectory;
 - (instancetype)init;
 
 /**
- *  This method is the designated initializer for the class, and used custom siteBundle, disable web when siteBundle is nil.
+ *  This method is the designated initializer for the class, and used custom siteBundle, web disable when siteBundle is nil.
  */
 - (instancetype)initWithSiteBundle:(NSBundle *)siteBundle;
 
