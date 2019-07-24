@@ -8,7 +8,6 @@
 
 #import "RemoteHDServer.h"
 #import "GCDWebHDServer.h"
-#import <sys/param.h>
 #import <sys/mount.h>
 
 @implementation HDAuthAccount
@@ -57,9 +56,6 @@
 
 #pragma mark -
 
-@interface RemoteHDServer()<GCDWebHDServerDelegate>
-
-@end
 @implementation RemoteHDServer
 {
     GCDWebHDServer * _hdServer;
@@ -70,35 +66,34 @@
     if (self = [super init]) {
         _hdServer = [[GCDWebHDServer alloc] init];
         _hdServer.allowHiddenItems = YES;
+        _hdServer.delegate = (id<GCDWebHDServerDelegate>)self;
         [GCDWebHDServer setLogLevel:5];
-        _hdServer.delegate = self;
     }
     return self;
 }
 
-- (void)webServerDidConnect:(GCDWebServer *)server {
-    
+
+- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))conf {
+    if (_runing) return;
+    _runing = [_hdServer startWithOptions:[self optionsWithConf:conf] error:NULL];
 }
 
-- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))option {
-    HDConfig *conf = [HDConfig new];
+- (NSDictionary *)optionsWithConf:(void(^)(HDConfig *conf, HDAuthAccount *auth))optionConf {
+    HDConfig* conf = [HDConfig new];
     conf.port = 8888;
     conf.bonjourName = NSStringFromClass(self.class);
     conf.directory = NSHomeDirectory();
-    HDAuthAccount *authAccount = [HDAuthAccount new];
-    if (option) {
-        option(conf, authAccount);
-    }
-    
+    HDAuthAccount *account = [HDAuthAccount new];
+    !optionConf?:optionConf(conf, account);
     NSMutableDictionary* options = [NSMutableDictionary dictionary];
     options[GCDWebServerOption_Port] = @(conf.port);
     options[GCDWebServerOption_BonjourName] = conf.bonjourName;
     options[GCDWebHDServerOption_HDDirectory] = conf.directory;
-    if (authAccount.count > 0) {
-        options[GCDWebServerOption_AuthenticationAccounts] = [authAccount accounts];
+    if (account.count > 0) {
+        options[GCDWebServerOption_AuthenticationAccounts] = [account accounts];
         options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess;
     }
-    _runing = [_hdServer startWithOptions:options error:NULL];
+    return options;
 }
 
 - (void)stop {
@@ -122,6 +117,38 @@
 
 + (instancetype)share {
     return [self new];
+}
+
+@end
+
+
+@interface RemoteHDServer(delegate)<GCDWebHDServerDelegate>
+@end
+
+@implementation GCDWebHDServer (delegate)
+
+- (void)hdServer:(GCDWebHDServer*)server didDownloadFileAtPath:(NSString*)path {
+    NSLog(@"%s", __func__);
+}
+
+- (void)hdServer:(GCDWebHDServer*)server didUploadFileAtPath:(NSString*)path {
+    NSLog(@"%s", __func__);
+}
+
+- (void)hdServer:(GCDWebHDServer*)server didMoveItemFromPath:(NSString*)fromPath toPath:(NSString*)toPath {
+    NSLog(@"%s", __func__);
+}
+
+- (void)hdServer:(GCDWebHDServer*)server didCopyItemFromPath:(NSString*)fromPath toPath:(NSString*)toPath {
+    NSLog(@"%s", __func__);
+}
+
+- (void)hdServer:(GCDWebHDServer*)server didDeleteItemAtPath:(NSString*)path {
+    NSLog(@"%s", __func__);
+}
+
+- (void)hdServer:(GCDWebHDServer*)server didCreateDirectoryAtPath:(NSString*)path {
+    NSLog(@"%s", __func__);
 }
 
 @end

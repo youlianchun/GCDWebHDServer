@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSURL *url;
 @property (class, nonatomic, readonly) unsigned long long space;
 
-- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))option;
+- (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))conf;
 - (void)stop;
 
 + (instancetype)share;
