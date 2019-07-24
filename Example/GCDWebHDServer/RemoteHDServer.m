@@ -60,7 +60,6 @@
 {
     GCDWebHDServer * _hdServer;
 }
-@synthesize runing = _runing;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -74,8 +73,8 @@
 
 
 - (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))conf {
-    if (_runing) return;
-    _runing = [_hdServer startWithOptions:[self optionsWithConf:conf] error:NULL];
+    if (self.runing) return;
+    [_hdServer startWithOptions:[self optionsWithConf:conf] error:NULL];
 }
 
 - (NSDictionary *)optionsWithConf:(void(^)(HDConfig *conf, HDAuthAccount *auth))optionConf {
@@ -97,8 +96,12 @@
 }
 
 - (void)stop {
-    if (!_runing) return;
+    if (!self.runing) return;
     [_hdServer stop];
+}
+
+- (BOOL)runing {
+    return _hdServer.running;
 }
 
 - (NSURL *)url {
