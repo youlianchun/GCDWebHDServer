@@ -63,7 +63,8 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _hdServer = [[GCDWebHDServer alloc] init];
+        NSString *path = [NSBundle.mainBundle pathForResource:@"WebHDSide" ofType:@"bundle"];
+        _hdServer = [[GCDWebHDServer alloc] initWithSiteBundle:[NSBundle bundleWithPath:path]];
         _hdServer.allowHiddenItems = YES;
         _hdServer.delegate = (id<GCDWebHDServerDelegate>)self;
         [GCDWebHDServer setLogLevel:5];
@@ -108,15 +109,20 @@
     return _hdServer.serverURL;
 }
 
-
-+ (unsigned long long)space {
-    struct statfs buf;
-    unsigned long long space = -1;
-    if (statfs("/var", &buf) >= 0) {
-        space = (unsigned long long)(buf.f_bsize * buf.f_bavail);
-    }
-    return space;
++ (HDSpace (^)(SpaceUnit unit))space {
+    return ^HDSpace(SpaceUnit unit) {
+        struct statfs buf;
+        unsigned long long space = -1;
+        if (statfs("/var", &buf) >= 0) {
+            space = (unsigned long long)(buf.f_bsize * buf.f_bavail);
+        }
+        HDSpace hdSpace;
+        hdSpace.space = space / (unit * 0.1);
+        hdSpace.unit = unit;
+        return hdSpace;
+    };
 }
+
 
 + (instancetype)share {
     return [self new];

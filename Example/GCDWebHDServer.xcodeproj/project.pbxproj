@@ -29,6 +29,7 @@
 		A94A50B322E6DAC000D8EF65 /* FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = A94A50B222E6DAC000D8EF65 /* FilePath.m */; };
 		A94A50B722E6DC7E00D8EF65 /* FileExplorerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A94A50B522E6DC7E00D8EF65 /* FileExplorerCell.m */; };
 		A94A50B822E6DC7E00D8EF65 /* FileExplorerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A94A50B622E6DC7E00D8EF65 /* FileExplorerCell.xib */; };
+		A94ACEF122E8950D009C99F1 /* WebHDSide.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A94ACEF022E8950D009C99F1 /* WebHDSide.bundle */; };
 		E3F82FEF97E0DA6DD86725C5 /* Pods_GCDWebHDServer_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44C37C8011268ED0372E762 /* Pods_GCDWebHDServer_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		A94A50B422E6DC7E00D8EF65 /* FileExplorerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileExplorerCell.h; sourceTree = "<group>"; };
 		A94A50B522E6DC7E00D8EF65 /* FileExplorerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileExplorerCell.m; sourceTree = "<group>"; };
 		A94A50B622E6DC7E00D8EF65 /* FileExplorerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileExplorerCell.xib; sourceTree = "<group>"; };
+		A94ACEF022E8950D009C99F1 /* WebHDSide.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WebHDSide.bundle; sourceTree = "<group>"; };
 		F44C37C8011268ED0372E762 /* Pods_GCDWebHDServer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GCDWebHDServer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 		6003F593195388D20070C39A /* Example for GCDWebHDServer */ = {
 			isa = PBXGroup;
 			children = (
+				A94ACEF022E8950D009C99F1 /* WebHDSide.bundle */,
 				A9239C3A22DF4314000CC977 /* RemoteHDServer.h */,
 				A9239C3B22DF4314000CC977 /* RemoteHDServer.m */,
 				A9239C3722DF42F1000CC977 /* AppDelegate.h */,
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A94A50B822E6DC7E00D8EF65 /* FileExplorerCell.xib in Resources */,
+				A94ACEF122E8950D009C99F1 /* WebHDSide.bundle in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				A94A50AF22E6D35400D8EF65 /* FileExplorerController.xib in Resources */,

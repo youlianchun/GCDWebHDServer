@@ -23,15 +23,29 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *directory;
 @end
 
+typedef enum SpaceUnit {
+    SpaceUnit_B  = 1,
+    SpaceUnit_KB = 1000,
+    SpaceUnit_MB = 1000000,
+    SpaceUnit_GB = 1000000000,
+    SpaceUnit_TB = 1000000000000,
+} SpaceUnit;
+
+typedef struct HDSpace {
+    unsigned long long space;
+    SpaceUnit unit;
+} HDSpace;
+
 @interface RemoteHDServer : SingleObject
 @property (nonatomic, readonly) BOOL running;
 @property (nonatomic, readonly) NSURL *url;
-@property (class, nonatomic, readonly) unsigned long long space;
-
+@property (class, readonly) HDSpace (^space)(SpaceUnit unit);
 - (void)startWithOption:(void(^)(HDConfig *conf, HDAuthAccount *auth))conf;
 - (void)stop;
 
 + (instancetype)share;
+
 @end
 
 NS_ASSUME_NONNULL_END
+

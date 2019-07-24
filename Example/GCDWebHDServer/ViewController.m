@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.spaceLabel.text = [NSString stringWithFormat:@"%0.2lf MB",RemoteHDServer.space/1024.0/1024.0];
     
     
@@ -37,6 +38,5 @@
         self.urlLabel.text = @"";
     }
 }
-
 
 @end
