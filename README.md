@@ -22,7 +22,7 @@ pod 'GCDWebHDServer'
 
 ## Author
 
-YLCHUN, lianchun.you@ximalaya.com
+YLCHUN
 
 ## License
 
